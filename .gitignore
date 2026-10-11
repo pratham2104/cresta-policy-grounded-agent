@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+*.env
+# hiring-team materials are not redistributed (see data/README.md)
+data/*.md
+!data/README.md
+data/*.txt

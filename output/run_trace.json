@@ -1,0 +1,787 @@
+{
+  "transcript": "data/transcript_CHT-2026-10-05-118827.txt",
+  "facts_at_end": {
+    "account": "NMB-7745213",
+    "customer": "Dana Whitfield",
+    "conversation_date": "2026-10-05",
+    "monthly_recurring_charge": 225.0,
+    "identity_verified": true,
+    "disputed_item": "$225.00 recurring charge",
+    "statement_date": "2026-10-01",
+    "customer_reported_outage": [
+      "2026-09-10T06:00:00",
+      "2026-09-21T06:00:00"
+    ],
+    "customer_mentions_outage": true,
+    "noc_lookup_done": true,
+    "noc_ticket": "OUT-58823",
+    "noc_outage": [
+      "2026-09-10T06:00:00",
+      "2026-09-21T06:00:00"
+    ],
+    "noc_unverifiable": null,
+    "prior_resolved_dispute_within_90d": null,
+    "goodwill_credits_last_12m": null,
+    "fraud_indicators": null,
+    "sources": {
+      "monthly_recurring_charge": "$225.00/month",
+      "identity_verified": "[14:05] Great, thanks, that matches \u2014 you're verified. Can you confirm the exact dates y",
+      "customer_reported_outage": "[14:06] Service went down on September 10th at 6 AM and wasn't back until September 21st at 6 AM \u2014 all three lines, totally dead",
+      "statement_date": "[14:06] invoice dated October 1st.",
+      "disputed_item": "[14:06] disputing the full $225.00 recurring charge",
+      "noc_ticket": "[14:08] agent NOC lookup: Thanks for those details \u2014 let me pull up our outage records for your service address around those dates... Okay, I do see a confirmed outage ticket, OUT-58823,"
+    }
+  },
+  "summary": {
+    "questions": 6,
+    "decisions": {
+      "ANSWER_WITH_CONDITIONS": 2,
+      "GATHER_INFO": 2,
+      "NO_POLICY_QUESTION": 1,
+      "PARTIAL_ANSWER_ESCALATE": 1
+    },
+    "claims": 29,
+    "claims_verified": 29,
+    "single_shot_retrieval_recall": 0.781,
+    "multi_hop_retrieval_recall": 1.0
+  },
+  "turns": [
+    {
+      "turn_time": "14:02",
+      "question": "Hi, I need to dispute a charge on my latest bill. My service was out for almost two weeks last month and I still got charged the full $225.00 like nothing happened.",
+      "intent": "DISPUTE_REQUEST",
+      "labeled_by": "rules",
+      "retrieval_query": "Hi, I need to dispute a charge on my latest bill. My service was out for almost two weeks last month and I still got charged the full $225.00 like nothing happened.",
+      "retrieved": [
+        {
+          "doc_id": "KB-1004",
+          "title": "Service-Outage Credits: Eligibility & Credit Calculation",
+          "score": 5.63,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1005",
+          "title": "How to Request a Service-Outage Credit",
+          "score": 5.31,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1006",
+          "title": "When We Escalate a Billing Request to Tier 2",
+          "score": 5.06,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1001",
+          "title": "How to File a Billing Dispute",
+          "score": 4.32,
+          "used_in_reply": true
+        }
+      ],
+      "governing_policy": null,
+      "primary_source": "KB-1001",
+      "driving_articles": [
+        "KB-1001"
+      ],
+      "decision": "GATHER_INFO",
+      "reply": "Next step for the agent: verify identity (KB-1001 step 1); identify the specific disputed line item (KB-1001 step 2). Do not quote any credit amount yet.",
+      "reply_rewritten_by": "template",
+      "claims": [
+        {
+          "text": "verify identity",
+          "doc_id": "KB-1001",
+          "quote": "Confirm the account holder's identity",
+          "need": "confirm account holder identity account number payment method PIN",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "specific line item",
+          "doc_id": "KB-1001",
+          "quote": "Identify the exact line item being disputed",
+          "need": "file billing dispute identify exact line item being disputed",
+          "retrieved_rank": 1,
+          "verified": true
+        }
+      ],
+      "unsupported": [],
+      "conditions": [],
+      "policy_checks": [],
+      "rejected_rules": [],
+      "retrieval_metrics": {
+        "cited_sources": [
+          "KB-1001"
+        ],
+        "single_shot_recall": 1.0,
+        "hop_recall": 1.0
+      }
+    },
+    {
+      "turn_time": "14:04",
+      "question": "Account is NMB-7745213, and the card ending is 4471.",
+      "intent": "IDENTITY_INFO",
+      "labeled_by": "rules",
+      "retrieval_query": "Account is NMB-7745213, and the card ending is 4471.",
+      "retrieved": [
+        {
+          "doc_id": "BIL-POL-014 Rule 2",
+          "title": "General Refund / Goodwill Credit Limit",
+          "score": 0.7,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1002",
+          "title": "Refund Eligibility & Goodwill Credit Limits",
+          "score": 0.63,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1001",
+          "title": "How to File a Billing Dispute",
+          "score": 0.6,
+          "used_in_reply": true
+        },
+        {
+          "doc_id": "KB-1007",
+          "title": "Repeat Disputes & Fraud Review",
+          "score": 0.6,
+          "used_in_reply": false
+        }
+      ],
+      "governing_policy": null,
+      "primary_source": "KB-1001",
+      "driving_articles": [
+        "KB-1001"
+      ],
+      "decision": "NO_POLICY_QUESTION",
+      "reply": "(No policy question. Identity details captured for verification per KB-1001 step 1.)",
+      "reply_rewritten_by": "template",
+      "claims": [
+        {
+          "text": "Verify identity before acting",
+          "doc_id": "KB-1001",
+          "quote": "Confirm the account holder's identity (name, account number, and either the last 4 digits of the payment method on file or the account PIN).",
+          "need": "confirm account holder identity account number last 4 digits payment method PIN",
+          "retrieved_rank": 1,
+          "verified": true
+        }
+      ],
+      "unsupported": [],
+      "conditions": [],
+      "policy_checks": [],
+      "rejected_rules": [],
+      "retrieval_metrics": {
+        "cited_sources": [
+          "KB-1001"
+        ],
+        "single_shot_recall": 1.0,
+        "hop_recall": 1.0
+      }
+    },
+    {
+      "turn_time": "14:06",
+      "question": "Service went down on September 10th at 6 AM and wasn't back until September 21st at 6 AM \u2014 all three lines, totally dead, no calls or data. I'm disputing the full $225.00 recurring charge on the invoice dated October 1st.",
+      "intent": "DISPUTE_REQUEST",
+      "labeled_by": "rules",
+      "retrieval_query": "Service went down on September 10th at 6 AM and wasn't back until September 21st at 6 AM \u2014 all three lines, totally dead, no calls or data. I'm disputing the full $225.00 recurring charge on the invoice dated October 1st. service outage credit NOC",
+      "retrieved": [
+        {
+          "doc_id": "KB-1005",
+          "title": "How to Request a Service-Outage Credit",
+          "score": 16.35,
+          "used_in_reply": true
+        },
+        {
+          "doc_id": "BIL-POL-014 Rule 3",
+          "title": "Service-Outage Credit Policy (Exception to Rule 2)",
+          "score": 11.5,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1004",
+          "title": "Service-Outage Credits: Eligibility & Credit Calculation",
+          "score": 11.38,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1003",
+          "title": "Understanding Your Nimbus Wireless Bill",
+          "score": 5.44,
+          "used_in_reply": false
+        }
+      ],
+      "governing_policy": null,
+      "primary_source": "KB-1005",
+      "driving_articles": [
+        "KB-1005"
+      ],
+      "decision": "GATHER_INFO",
+      "reply": "Next step for the agent: look up the NOC outage ticket for the service address and dates (KB-1005 step 2). Do not quote any credit amount yet.",
+      "reply_rewritten_by": "template",
+      "claims": [
+        {
+          "text": "NOC lookup",
+          "doc_id": "KB-1005",
+          "quote": "Look up the NOC outage ticket (format: OUT-#####) covering that address and date range.",
+          "need": "request service outage credit look up NOC outage ticket covering address date range",
+          "retrieved_rank": 1,
+          "verified": true
+        }
+      ],
+      "unsupported": [],
+      "conditions": [],
+      "policy_checks": [],
+      "rejected_rules": [],
+      "retrieval_metrics": {
+        "cited_sources": [
+          "KB-1005"
+        ],
+        "single_shot_recall": 1.0,
+        "hop_recall": 1.0
+      }
+    },
+    {
+      "turn_time": "14:09",
+      "question": "Okay, but isn't your refund limit only $75? So you can only give me $75 back for this, right?",
+      "intent": "CREDIT_AMOUNT_OR_LIMIT",
+      "labeled_by": "rules",
+      "retrieval_query": "Okay, but isn't your refund limit only $75? So you can only give me $75 back for this, right? service outage credit NOC",
+      "retrieved": [
+        {
+          "doc_id": "BIL-POL-014 Rule 3",
+          "title": "Service-Outage Credit Policy (Exception to Rule 2)",
+          "score": 5.77,
+          "used_in_reply": true
+        },
+        {
+          "doc_id": "KB-1002",
+          "title": "Refund Eligibility & Goodwill Credit Limits",
+          "score": 4.95,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1006",
+          "title": "When We Escalate a Billing Request to Tier 2",
+          "score": 4.92,
+          "used_in_reply": true
+        },
+        {
+          "doc_id": "BIL-POL-014 Rule 2",
+          "title": "General Refund / Goodwill Credit Limit",
+          "score": 4.18,
+          "used_in_reply": false
+        }
+      ],
+      "governing_policy": "BIL-POL-014 Rule 3",
+      "primary_source": "KB-1004",
+      "driving_articles": [
+        "BIL-POL-014 Rule 1",
+        "BIL-POL-014 Rule 3",
+        "BIL-POL-014 Rule 4",
+        "BIL-POL-014 Rule 5",
+        "KB-1004",
+        "KB-1005",
+        "KB-1006"
+      ],
+      "decision": "ANSWER_WITH_CONDITIONS",
+      "reply": "The $75 limit you saw is our general goodwill limit, and it doesn't apply here. Because NOC ticket OUT-58823 confirms your outage, you qualify for a Service-Outage Credit, which is a separate policy and isn't capped at $75. It's calculated as your $225.00 monthly charge / 30 x 11 full days without service = $82.50 (the credit covers the days you were without service, not the whole month). That's within what can be applied at the front line (outage credits only need specialist approval above $300 or for outages longer than 30 days); I'll apply it once I've completed the standard account-history check.",
+      "reply_rewritten_by": "template",
+      "claims": [
+        {
+          "text": "[check] dispute_window_60d",
+          "doc_id": "BIL-POL-014 Rule 1",
+          "quote": "within 60 calendar days of the statement date",
+          "need": "billing dispute eligibility window 60 days statement date",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] specific_line_item",
+          "doc_id": "BIL-POL-014 Rule 1",
+          "quote": "The dispute must identify the specific line item or charge being contested",
+          "need": "dispute must identify specific line item charge",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] noc_ticket_exists",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "A valid NOC outage ticket number exists covering the customer's service address and the dates in question.",
+          "need": "valid NOC outage ticket number covering service address dates",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] outage_over_4h",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "The outage duration recorded on the NOC ticket exceeds 4 consecutive hours.",
+          "need": "outage duration recorded NOC ticket exceeds 4 consecutive hours",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] requested_within_30d_of_resolution",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "The customer requests the credit within 30 calendar days of the outage's resolution date (not the billing statement date).",
+          "need": "customer requests credit within 30 calendar days outage resolution date",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] credit_formula",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "Service-Outage Credit = (current monthly recurring charge \u00f7 30) \u00d7 number of full days the account was without service",
+          "need": "service outage credit calculation monthly recurring charge divided 30 full days without service",
+          "retrieved_rank": 2,
+          "verified": true
+        },
+        {
+          "text": "[check] not_capped_by_general_75",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "is not counted against, and not capped by, the $75.00 General Refund/Goodwill Credit Limit",
+          "need": "outage credit not counted against not capped by $75.00 general goodwill limit",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] rule_4b_thresholds",
+          "doc_id": "BIL-POL-014 Rule 4",
+          "quote": "A Service-Outage Credit only needs escalation if it independently meets condition (b).",
+          "need": "service outage credit escalation exceeds $300.00 30 consecutive days condition b",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] repeat_dispute_90d",
+          "doc_id": "BIL-POL-014 Rule 5",
+          "quote": "must have the credit decision made by a Tier 2 Billing Specialist, not the front-line agent, even if the dollar amount is small.",
+          "need": "repeat dispute 90 days prior resolved dispute fraud Tier 2 Billing Specialist",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] fraud_indicators",
+          "doc_id": "BIL-POL-014 Rule 5",
+          "quote": "must have the credit decision made by a Tier 2 Billing Specialist, not the front-line agent, even if the dollar amount is small.",
+          "need": "repeat dispute 90 days prior resolved dispute fraud Tier 2 Billing Specialist",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "outage credit is a separate track",
+          "doc_id": "KB-1004",
+          "quote": "is issued separately from, and is not limited by, the standard $75.00 goodwill credit ceiling described in KB-1002",
+          "need": "service-outage credit issued separately not limited by standard $75.00 goodwill credit ceiling",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "$75 does not trigger escalation for outage credits",
+          "doc_id": "KB-1006",
+          "quote": "A Service-Outage Credit above $75.00 does not by itself require escalation",
+          "need": "escalate billing request Tier 2 service-outage credit above $75.00 does not by itself require escalation",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "Tier-2 threshold for outage credits",
+          "doc_id": "KB-1005",
+          "quote": "If the calculated credit is $300.00 or less and the outage lasted 30 days or fewer, the agent may apply the credit directly.",
+          "need": "calculated credit $300.00 or less outage lasted 30 days or fewer agent may apply credit directly",
+          "retrieved_rank": 1,
+          "verified": true
+        }
+      ],
+      "unsupported": [],
+      "conditions": [
+        "'Full days' counted as complete 24-hour periods on the NOC ticket (264 h -> 11). Counting only whole calendar days fully without service would give 10 (= $75.00); the policy does not define it - confirm Billing Ops convention.",
+        "Repeat-dispute check UNVERIFIED: transcript has no account dispute history. If a resolved dispute exists in the prior 90 days, Tier 2 must decide (Rule 4c / Rule 5).",
+        "Fraud-indicator check UNVERIFIED: no fraud flags in provided evidence (Rule 4d / Rule 5)."
+      ],
+      "policy_checks": [
+        {
+          "check": "dispute_window_60d",
+          "result": "pass",
+          "detail": "statement 2026-10-01, window closes 2026-11-30",
+          "source": "BIL-POL-014 Rule 1"
+        },
+        {
+          "check": "specific_line_item",
+          "result": "pass",
+          "detail": "disputed item: $225.00 recurring charge",
+          "source": "BIL-POL-014 Rule 1"
+        },
+        {
+          "check": "noc_ticket_exists",
+          "result": "pass",
+          "detail": "OUT-58823 covers 2026-09-10 06:00:00 -> 2026-09-21 06:00:00",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "outage_over_4h",
+          "result": "pass",
+          "detail": "264 consecutive hours on ticket",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "requested_within_30d_of_resolution",
+          "result": "pass",
+          "detail": "resolved 2026-09-21, requested 2026-10-05, deadline 2026-10-21",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "credit_formula",
+          "result": "info",
+          "detail": "$225.00 / 30 x 11 full days = $82.50",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "not_capped_by_general_75",
+          "result": "info",
+          "detail": "$82.50 exceeds $75.00 but Rule 2's ceiling does not apply to this track",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "rule_4b_thresholds",
+          "result": "pass",
+          "detail": "credit $82.50 vs $300.00; outage 11.0 days vs 30",
+          "source": "BIL-POL-014 Rule 4"
+        },
+        {
+          "check": "repeat_dispute_90d",
+          "result": "unverified",
+          "detail": "no dispute history in the provided evidence",
+          "source": "BIL-POL-014 Rule 5"
+        },
+        {
+          "check": "fraud_indicators",
+          "result": "unverified",
+          "detail": "no fraud review data in the provided evidence",
+          "source": "BIL-POL-014 Rule 5"
+        }
+      ],
+      "rejected_rules": [
+        [
+          "BIL-POL-014 Rule 2",
+          "more specific Rule 3 governs; Rule 2's $75 ceiling must not be blended in (Rule 3, Rule 4 note, KB-1006)"
+        ]
+      ],
+      "retrieval_metrics": {
+        "cited_sources": [
+          "BIL-POL-014 Rule 1",
+          "BIL-POL-014 Rule 3",
+          "BIL-POL-014 Rule 4",
+          "BIL-POL-014 Rule 5",
+          "KB-1004",
+          "KB-1005",
+          "KB-1006"
+        ],
+        "single_shot_recall": 0.286,
+        "hop_recall": 1.0
+      }
+    },
+    {
+      "turn_time": "14:11",
+      "question": "While you're looking into that \u2014 does whatever credit I end up getting also reduce the taxes and regulatory surcharges I paid during those eleven days, or is it only applied against the plan charge itself?",
+      "intent": "TAX_TREATMENT",
+      "labeled_by": "rules",
+      "retrieval_query": "While you're looking into that \u2014 does whatever credit I end up getting also reduce the taxes and regulatory surcharges I paid during those eleven days, or is it only applied against the plan charge itself? service outage credit NOC",
+      "retrieved": [
+        {
+          "doc_id": "KB-1003",
+          "title": "Understanding Your Nimbus Wireless Bill",
+          "score": 16.2,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1004",
+          "title": "Service-Outage Credits: Eligibility & Credit Calculation",
+          "score": 9.73,
+          "used_in_reply": true
+        },
+        {
+          "doc_id": "KB-1010",
+          "title": "Mid-Cycle Plan Change Proration",
+          "score": 9.45,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "BIL-POL-014 Rule 3",
+          "title": "Service-Outage Credit Policy (Exception to Rule 2)",
+          "score": 6.55,
+          "used_in_reply": false
+        }
+      ],
+      "governing_policy": "none - not covered by BIL-POL-014 or KB excerpt",
+      "primary_source": "KB-1004",
+      "driving_articles": [
+        "KB-1004"
+      ],
+      "decision": "PARTIAL_ANSWER_ESCALATE",
+      "reply": "What I can confirm: the outage credit is calculated on your recurring plan charge only. Whether the taxes and regulatory surcharges from those days are also adjusted isn't something our billing guidance covers, so I won't guess. I'm sending that part to a Tier 2 Billing Specialist, and you'll get a confirmed answer in writing with your case number.",
+      "reply_rewritten_by": "template",
+      "claims": [
+        {
+          "text": "outage credit base = recurring plan charge",
+          "doc_id": "KB-1004",
+          "quote": "This credit applies to the recurring plan charge only",
+          "need": "service-outage credit applies to recurring plan charge only",
+          "retrieved_rank": 1,
+          "verified": true
+        }
+      ],
+      "unsupported": [
+        "Whether taxes/regulatory surcharges billed during the outage are reduced or refunded: no policy rule or KB article addresses it (KB-1003 describes how taxes are billed, not how credits affect them)."
+      ],
+      "conditions": [],
+      "policy_checks": [],
+      "rejected_rules": [],
+      "retrieval_metrics": {
+        "cited_sources": [
+          "KB-1004"
+        ],
+        "single_shot_recall": 1.0,
+        "hop_recall": 1.0
+      }
+    },
+    {
+      "turn_time": "14:13",
+      "question": "One more thing while I have you \u2014 how long do I actually have to submit a request like this after an outage gets fixed?",
+      "intent": "REQUEST_DEADLINE",
+      "labeled_by": "rules",
+      "retrieval_query": "One more thing while I have you \u2014 how long do I actually have to submit a request like this after an outage gets fixed? service outage credit NOC",
+      "retrieved": [
+        {
+          "doc_id": "BIL-POL-014 Rule 3",
+          "title": "Service-Outage Credit Policy (Exception to Rule 2)",
+          "score": 8.13,
+          "used_in_reply": true
+        },
+        {
+          "doc_id": "KB-1006",
+          "title": "When We Escalate a Billing Request to Tier 2",
+          "score": 7.31,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "KB-1004",
+          "title": "Service-Outage Credits: Eligibility & Credit Calculation",
+          "score": 6.88,
+          "used_in_reply": false
+        },
+        {
+          "doc_id": "BIL-POL-014 Rule 5",
+          "title": "Repeat Dispute & Fraud Review",
+          "score": 6.17,
+          "used_in_reply": true
+        }
+      ],
+      "governing_policy": "BIL-POL-014 Rule 3",
+      "primary_source": "KB-1005",
+      "driving_articles": [
+        "BIL-POL-014 Rule 1",
+        "BIL-POL-014 Rule 3",
+        "BIL-POL-014 Rule 4",
+        "BIL-POL-014 Rule 5",
+        "KB-1005"
+      ],
+      "decision": "ANSWER_WITH_CONDITIONS",
+      "reply": "For an outage credit, the deadline is 30 days from the date the outage was resolved, not from your bill date. Your outage was resolved on September 21, so the request must be in by October 21, 2026. Today's request is within that.",
+      "reply_rewritten_by": "template",
+      "claims": [
+        {
+          "text": "[check] dispute_window_60d",
+          "doc_id": "BIL-POL-014 Rule 1",
+          "quote": "within 60 calendar days of the statement date",
+          "need": "billing dispute eligibility window 60 days statement date",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] specific_line_item",
+          "doc_id": "BIL-POL-014 Rule 1",
+          "quote": "The dispute must identify the specific line item or charge being contested",
+          "need": "dispute must identify specific line item charge",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] noc_ticket_exists",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "A valid NOC outage ticket number exists covering the customer's service address and the dates in question.",
+          "need": "valid NOC outage ticket number covering service address dates",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] outage_over_4h",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "The outage duration recorded on the NOC ticket exceeds 4 consecutive hours.",
+          "need": "outage duration recorded NOC ticket exceeds 4 consecutive hours",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] requested_within_30d_of_resolution",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "The customer requests the credit within 30 calendar days of the outage's resolution date (not the billing statement date).",
+          "need": "customer requests credit within 30 calendar days outage resolution date",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] credit_formula",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "Service-Outage Credit = (current monthly recurring charge \u00f7 30) \u00d7 number of full days the account was without service",
+          "need": "service outage credit calculation monthly recurring charge divided 30 full days without service",
+          "retrieved_rank": 2,
+          "verified": true
+        },
+        {
+          "text": "[check] not_capped_by_general_75",
+          "doc_id": "BIL-POL-014 Rule 3",
+          "quote": "is not counted against, and not capped by, the $75.00 General Refund/Goodwill Credit Limit",
+          "need": "outage credit not counted against not capped by $75.00 general goodwill limit",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] rule_4b_thresholds",
+          "doc_id": "BIL-POL-014 Rule 4",
+          "quote": "A Service-Outage Credit only needs escalation if it independently meets condition (b).",
+          "need": "service outage credit escalation exceeds $300.00 30 consecutive days condition b",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] repeat_dispute_90d",
+          "doc_id": "BIL-POL-014 Rule 5",
+          "quote": "must have the credit decision made by a Tier 2 Billing Specialist, not the front-line agent, even if the dollar amount is small.",
+          "need": "repeat dispute 90 days prior resolved dispute fraud Tier 2 Billing Specialist",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "[check] fraud_indicators",
+          "doc_id": "BIL-POL-014 Rule 5",
+          "quote": "must have the credit decision made by a Tier 2 Billing Specialist, not the front-line agent, even if the dollar amount is small.",
+          "need": "repeat dispute 90 days prior resolved dispute fraud Tier 2 Billing Specialist",
+          "retrieved_rank": 1,
+          "verified": true
+        },
+        {
+          "text": "30 days from resolution",
+          "doc_id": "KB-1005",
+          "quote": "Confirm the customer is requesting within 30 days of the ticket's resolution date.",
+          "need": "confirm customer requesting within 30 days of ticket resolution date",
+          "retrieved_rank": 1,
+          "verified": true
+        }
+      ],
+      "unsupported": [],
+      "conditions": [
+        "'Full days' counted as complete 24-hour periods on the NOC ticket (264 h -> 11). Counting only whole calendar days fully without service would give 10 (= $75.00); the policy does not define it - confirm Billing Ops convention.",
+        "Repeat-dispute check UNVERIFIED: transcript has no account dispute history. If a resolved dispute exists in the prior 90 days, Tier 2 must decide (Rule 4c / Rule 5).",
+        "Fraud-indicator check UNVERIFIED: no fraud flags in provided evidence (Rule 4d / Rule 5)."
+      ],
+      "policy_checks": [
+        {
+          "check": "dispute_window_60d",
+          "result": "pass",
+          "detail": "statement 2026-10-01, window closes 2026-11-30",
+          "source": "BIL-POL-014 Rule 1"
+        },
+        {
+          "check": "specific_line_item",
+          "result": "pass",
+          "detail": "disputed item: $225.00 recurring charge",
+          "source": "BIL-POL-014 Rule 1"
+        },
+        {
+          "check": "noc_ticket_exists",
+          "result": "pass",
+          "detail": "OUT-58823 covers 2026-09-10 06:00:00 -> 2026-09-21 06:00:00",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "outage_over_4h",
+          "result": "pass",
+          "detail": "264 consecutive hours on ticket",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "requested_within_30d_of_resolution",
+          "result": "pass",
+          "detail": "resolved 2026-09-21, requested 2026-10-05, deadline 2026-10-21",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "credit_formula",
+          "result": "info",
+          "detail": "$225.00 / 30 x 11 full days = $82.50",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "not_capped_by_general_75",
+          "result": "info",
+          "detail": "$82.50 exceeds $75.00 but Rule 2's ceiling does not apply to this track",
+          "source": "BIL-POL-014 Rule 3"
+        },
+        {
+          "check": "rule_4b_thresholds",
+          "result": "pass",
+          "detail": "credit $82.50 vs $300.00; outage 11.0 days vs 30",
+          "source": "BIL-POL-014 Rule 4"
+        },
+        {
+          "check": "repeat_dispute_90d",
+          "result": "unverified",
+          "detail": "no dispute history in the provided evidence",
+          "source": "BIL-POL-014 Rule 5"
+        },
+        {
+          "check": "fraud_indicators",
+          "result": "unverified",
+          "detail": "no fraud review data in the provided evidence",
+          "source": "BIL-POL-014 Rule 5"
+        }
+      ],
+      "rejected_rules": [
+        [
+          "BIL-POL-014 Rule 2",
+          "more specific Rule 3 governs; Rule 2's $75 ceiling must not be blended in (Rule 3, Rule 4 note, KB-1006)"
+        ],
+        [
+          "BIL-POL-014 Rule 1 (60 days from statement date)",
+          "general dispute window; the outage-credit request deadline is the narrower Rule 3 condition"
+        ]
+      ],
+      "retrieval_metrics": {
+        "cited_sources": [
+          "BIL-POL-014 Rule 1",
+          "BIL-POL-014 Rule 3",
+          "BIL-POL-014 Rule 4",
+          "BIL-POL-014 Rule 5",
+          "KB-1005"
+        ],
+        "single_shot_recall": 0.4,
+        "hop_recall": 1.0
+      }
+    }
+  ],
+  "consolidated_follow_up": {
+    "reply_to_customer": "Credit and policy: The $75 limit you saw is our general goodwill limit, and it doesn't apply here. Because NOC ticket OUT-58823 confirms your outage, you qualify for a Service-Outage Credit, which is a separate policy and isn't capped at $75. It's calculated as your $225.00 monthly charge / 30 x 11 full days without service = $82.50 (the credit covers the days you were without service, not the whole month). That's within what can be applied at the front line (outage credits only need specialist approval above $300 or for outages longer than 30 days); I'll apply it once I've completed the standard account-history check.\n\nTaxes and surcharges: What I can confirm: the outage credit is calculated on your recurring plan charge only. Whether the taxes and regulatory surcharges from those days are also adjusted isn't something our billing guidance covers, so I won't guess. I'm sending that part to a Tier 2 Billing Specialist, and you'll get a confirmed answer in writing with your case number.\n\nDeadline: For an outage credit, the deadline is 30 days from the date the outage was resolved, not from your bill date. Your outage was resolved on September 21, so the request must be in by October 21, 2026. Today's request is within that.\n\nCase number: [BDC-###### - assigned when the dispute is logged]. You'll receive this summary in writing.",
+    "agent_actions": [
+      "Log the dispute in the Billing Case queue and obtain a case number (format BDC-######) - KB-1001 step 3; the transcript contains none, so the reply leaves a placeholder rather than inventing one.",
+      "Send this resolution and the case number to the customer in writing - KB-1001 step 5."
+    ],
+    "agent_only_preconditions_before_issuing_credit": [
+      "'Full days' counted as complete 24-hour periods on the NOC ticket (264 h -> 11). Counting only whole calendar days fully without service would give 10 (= $75.00); the policy does not define it - confirm Billing Ops convention.",
+      "Fraud-indicator check UNVERIFIED: no fraud flags in provided evidence (Rule 4d / Rule 5).",
+      "Repeat-dispute check UNVERIFIED: transcript has no account dispute history. If a resolved dispute exists in the prior 90 days, Tier 2 must decide (Rule 4c / Rule 5)."
+    ],
+    "escalations": [
+      "[14:11] TAX_TREATMENT"
+    ]
+  }
+}
